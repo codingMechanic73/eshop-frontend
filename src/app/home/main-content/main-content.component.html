@@ -1,0 +1,15 @@
+<div class="container mt-5">
+    <ul ngbNav #nav="ngbNav" class="nav nav-pills justify-content-center">
+        <li ngbNavItem>
+            <a ngbNavLink class=" mb-20" (click)="handleCategoryChange('home')">Home</a>
+        </li>
+        <li *ngFor="let category of categories" ngbNavItem>
+            <a ngbNavLink class=" mb-20" (click)="handleCategoryChange(category)"> {{category}}
+            </a>
+        </li>
+    </ul>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+
+</div>

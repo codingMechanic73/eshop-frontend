@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomeModule } from './home/home.module';
 
 
 @NgModule({
@@ -10,8 +11,12 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
+    // built in modules
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+
+    // user defined modules
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

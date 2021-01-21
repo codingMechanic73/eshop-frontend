@@ -1,0 +1,35 @@
+<div class="filter d-flex justify-content-around flex-wrap">
+    <form class="form-group row" [formGroup]="sortForm">
+        <label for="sortBy" class="col-md-4 col-form-label">Sort By</label>
+        <div class="col-md-8 col-sm-12">
+            <select id="inputState" class="form-control" name="sortBy" formControlName="sortBy">
+                <option selected>Default</option>
+                <option>Price Highest</option>
+                <option>Price Lowest</option>
+                <option>Newest</option>
+            </select>
+        </div>
+    </form>
+
+    <span class="col-md-2 col-sm-12 text-center">
+        {{collectionSize}} results found!
+    </span>
+
+    <ngb-pagination class="d-flex justify-content-center" [(page)]="currentPageNo" [pageSize]="searchCriteria.pageSize"
+        [collectionSize]="collectionSize" (pageChange)="handlePageChange($event)">
+    </ngb-pagination>
+
+</div>
+<div class="card-deck" *ngIf="!loading else showSpinner">
+    <ng-container *ngIf="products?.length > 0">
+        <app-product-item *ngFor="let product of products" [product]="product"></app-product-item>
+    </ng-container>
+</div>
+
+<ng-template #showSpinner>
+    <div class="spinner d-flex justify-content-center mt-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</ng-template>

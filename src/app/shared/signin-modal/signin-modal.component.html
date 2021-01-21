@@ -1,0 +1,21 @@
+<span id="sign" (click)="openModal(template)">Sign In</span>
+<ng-template #template>
+    <div class="modal-body">
+        <ul ngbNav #nav="ngbNav" class="nav nav-pills justify-content-center">
+            <li ngbNavItem>
+              <a ngbNavLink class=" mb-20">Sign In</a>
+              <ng-template ngbNavContent>
+                <app-signin (onSignUp)="selectTab($event)"></app-signin>
+              </ng-template>
+            </li>
+            <li ngbNavItem>
+              <a ngbNavLink class=" mb-20">Sign Up</a>
+              <ng-template ngbNavContent>
+                <app-signup></app-signup>
+              </ng-template>
+            </li>
+          </ul>
+          <div [ngbNavOutlet]="nav"></div>
+    </div>
+</ng-template>
+

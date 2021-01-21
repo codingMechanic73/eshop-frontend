@@ -1,0 +1,24 @@
+<div *ngIf="!loading else showSpinner" class=" d-flex justify-content-between flex-wrap">
+    <div class="col-md-6 col-sm-12">
+        <img class="w-100" [src]="product.imageUrl" [alt]="product.name" />
+    </div>
+    <div class="col-md-6 p-5 col-sm-12">
+        <h2 class="font-weight-bold">{{product.name}}</h2>
+        <h3>Category: <strong>{{product.category}}</strong></h3>
+        <h4>{{product.description}}</h4>
+        <h2 class="text-danger">{{product.price | currency:'INR'}}</h2>
+        <h3>Quantity: 1</h3>
+        <button class="btn btn-light col-sm-12 col-md-6" [disabled]="!isLoggedIn">
+            <i class="fa fa-shopping-cart"></i>
+            <span>Buy now</span>
+        </button>
+    </div>
+</div>
+
+<ng-template #showSpinner>
+    <div class="spinner d-flex justify-content-center mt-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</ng-template>
