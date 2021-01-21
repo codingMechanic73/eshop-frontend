@@ -14,9 +14,10 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgbModule, NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { HomeModule } from '../home/home.module';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [NavBarComponent, SigninModalComponent, SigninComponent, SignupComponent],
+  declarations: [NavBarComponent, SigninModalComponent, SigninComponent, SignupComponent, FooterComponent],
   imports: [
     // built in modules
     CommonModule,
@@ -38,6 +39,6 @@ import { HomeModule } from '../home/home.module';
     useClass: CustomInterceptorService,
     multi: true
   }],
-  exports: [NavBarComponent]
+  exports: [NavBarComponent, FooterComponent]
 })
 export class SharedModule { }
