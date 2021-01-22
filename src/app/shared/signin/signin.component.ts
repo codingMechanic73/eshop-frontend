@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserCredentials } from 'src/app/model/userCredentials';
-import { AuthService } from '../service/auth.service';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-signin',
@@ -27,13 +27,19 @@ export class SigninComponent implements OnInit {
         this.accountSuccess = 1;
         this.message = result.message;
 
+        this.authService.fetchUserDetails().subscribe(response => {
+          console.log(response), eror => {
+            console.log(eror);
+          }
+        })
 
       }, (error) => {
         this.accountSuccess = -1;
         console.log(error);
         this.message = error ? error : "No network";
       }
-    )
+    );
+
 
   }
 

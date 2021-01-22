@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/model/product';
-import { AuthService } from 'src/app/shared/service/auth.service';
-import { ProductService } from 'src/app/shared/service/product.service';
+import { AuthService } from 'src/app/service/auth.service';
+import { OrderService } from 'src/app/service/order.service';
+import { ProductService } from 'src/app/service/product.service';
+
 
 @Component({
   selector: 'app-product-item-details',
@@ -16,7 +18,9 @@ export class ProductItemDetailsComponent implements OnInit {
 
   constructor(private productService: ProductService,
     private activatedRoute: ActivatedRoute,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private oderService: OrderService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.loading = true;
@@ -38,6 +42,11 @@ export class ProductItemDetailsComponent implements OnInit {
 
     this.isLoggedIn = this.authService.getToken() !== null;
     console.log(this.isLoggedIn)
+  }
+
+  addToCart() {
+    this.oderService.saveProductToCart(this.product);
+    this.router.navigate([`order/create`]);
   }
 
 }

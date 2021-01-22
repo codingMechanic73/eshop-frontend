@@ -1,12 +1,12 @@
-<nav class="navbar navbar-dark bg-primary sticky-top">
-    <div class="d-flex justify-content-between w-100 flex-wrap">
+<nav class="navbar navbar-dark bg-primary sticky-top ">
+    <div class="d-flex justify-content-between flex-wrap w-100">
         <a [routerLink]="['']" class="nav__logo btn text-light">
             <i class="fa fa-shopping-cart"></i>
             <span class="nav__logo-text">UpGrad Eshop</span>
         </a>
         <form class="navbar-form form-inline" [formGroup]="searchForm">
-            <input formControlName="search" class="form-control" type="search" name="search" placeholder="Type to search Products..." aria-label="Search"
-                style="margin-right: -20px; width: 290px;">
+            <input formControlName="search" class="form-control" type="search" name="search"
+                placeholder="Type to search Products..." aria-label="Search" style="margin-right: -20px; width: 290px;">
             <i class="fa fa-search text-primary" aria-hidden="true"></i>
         </form>
 

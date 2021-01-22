@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CustomInterceptorService } from './service/custom-interceptor.service';
 import { SigninModalComponent } from './signin-modal/signin-modal.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
@@ -15,6 +14,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgbModule, NgbNav } from '@ng-bootstrap/ng-bootstrap';
 import { HomeModule } from '../home/home.module';
 import { FooterComponent } from './footer/footer.component';
+import { CustomInterceptorService } from '../service/custom-interceptor.service';
 
 @NgModule({
   declarations: [NavBarComponent, SigninModalComponent, SigninComponent, SignupComponent, FooterComponent],

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Product } from 'src/app/model/product';
-import { ProductService } from 'src/app/shared/service/product.service';
-import { SearchService } from 'src/app/shared/service/search.service';
+import { ProductService } from 'src/app/service/product.service';
+import { SearchService } from 'src/app/service/search.service';
+
 
 @Component({
   selector: 'app-main-content',
@@ -24,9 +24,8 @@ export class MainContentComponent implements OnInit {
 
   ngOnInit(): void {
 
-     // fetch categories
+    // fetch categories
     this.productService.getCategories().subscribe(response => {
-      console.log(response);
       this.categories = response;
     }, () => {
     });

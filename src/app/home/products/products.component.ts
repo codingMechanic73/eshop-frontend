@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/model/product';
 import { SearchCriteria } from 'src/app/model/searchCriteria';
-import { ProductService } from 'src/app/shared/service/product.service';
+import { ProductService } from 'src/app/service/product.service';
 
 @Component({
   selector: 'app-products',
@@ -46,7 +46,6 @@ export class ProductsComponent implements OnInit {
     this.sortOrderChangeListener();
 
     this.activatedRoute.queryParams.subscribe(parameters => {
-      console.log(parameters)
 
       // if category exists and category is home then replace with '' as home refers to all items
       this.searchCriteria.category = parameters['category'] ? (parameters['category'] == 'home' ? '' : parameters['category']) : '';
@@ -60,9 +59,7 @@ export class ProductsComponent implements OnInit {
   getProductsBasedOnQueryParams() {
 
     this.loading = true;
-    console.log(this.searchCriteria);
     this.productService.getAllProducts(this.searchCriteria).subscribe(response => {
-      console.log(response);
       this.products = response['content'];
       this.collectionSize = response['totalElements'];
 

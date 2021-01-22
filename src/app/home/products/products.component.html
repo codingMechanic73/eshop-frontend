@@ -18,13 +18,14 @@
     <ngb-pagination class="d-flex justify-content-center" [(page)]="currentPageNo" [pageSize]="searchCriteria.pageSize"
         [collectionSize]="collectionSize" (pageChange)="handlePageChange($event)">
     </ngb-pagination>
-
 </div>
-<div class="card-deck" *ngIf="!loading else showSpinner">
+
+<div class="card-deck justify-content-md-start justify-content-sm-center" *ngIf="!loading else showSpinner">
     <ng-container *ngIf="products?.length > 0">
         <app-product-item *ngFor="let product of products" [product]="product"></app-product-item>
     </ng-container>
 </div>
+
 
 <ng-template #showSpinner>
     <div class="spinner d-flex justify-content-center mt-5">

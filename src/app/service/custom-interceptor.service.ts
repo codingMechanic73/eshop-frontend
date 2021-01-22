@@ -26,7 +26,8 @@ export class CustomInterceptorService implements HttpInterceptor {
     if (skip) {
       return next.handle(req);
     }
-    req = req.clone({ headers: req.headers.set('Authorization', this.authService.getToken()) });
+    req = req.clone({ headers: req.headers.set('Authorization', `Bearer ${this.authService.getToken()}`) });
+    console.log(req);
     return next.handle(req);
   }
 }

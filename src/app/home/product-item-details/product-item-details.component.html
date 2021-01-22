@@ -1,4 +1,4 @@
-<div *ngIf="!loading else showSpinner" class=" d-flex justify-content-between flex-wrap">
+<div *ngIf="!loading else showSpinner" class=" d-flex justify-content-between flex-wrap align-items-center">
     <div class="col-md-6 col-sm-12">
         <img class="w-100" [src]="product.imageUrl" [alt]="product.name" />
     </div>
@@ -8,7 +8,7 @@
         <h4>{{product.description}}</h4>
         <h2 class="text-danger">{{product.price | currency:'INR'}}</h2>
         <h3>Quantity: 1</h3>
-        <button class="btn btn-light col-sm-12 col-md-6" [disabled]="!isLoggedIn">
+        <button class="btn btn-light col-sm-12 col-md-6" [disabled]="!isLoggedIn" (click)="addToCart()">
             <i class="fa fa-shopping-cart"></i>
             <span>Buy now</span>
         </button>

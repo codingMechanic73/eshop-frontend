@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { AuthService } from 'src/app/service/auth.service';
+import { SearchService } from 'src/app/service/search.service';
 import { User } from '../../model/user';
-import { AuthService } from '../service/auth.service';
-import { SearchService } from '../service/search.service';
 
 @Component({
   selector: 'app-nav-bar',

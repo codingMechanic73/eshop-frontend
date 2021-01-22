@@ -13,38 +13,57 @@ export class AuthService {
 
   user = new Subject<User>();
 
-  url: string = 'http://localhost:8086/auth'
+  url: string = 'http://localhost:8086'
 
   constructor(private httpClient: HttpClient) { }
 
   createAccount(userdetails: UserDetails) {
     return this.httpClient
-      .post<UserDetails>(`${this.url}/register`, userdetails)
+      .post<UserDetails>(`${this.url}/auth/register`, userdetails)
       .pipe(catchError(this.errorHandler));
   }
 
   signin(userCredentials: UserCredentials) {
     return this.httpClient
-      .post<User>(`${this.url}/login`, userCredentials)
+      .post<User>(`${this.url}/auth/login`, userCredentials)
       .pipe(catchError(this.errorHandler),
         tap((responseUser: User) => {
+          console.log(responseUser)
           this.saveUser(responseUser);
           this.user.next(responseUser);
         }))
   }
 
+  fetchUserDetails() {
+    return this.httpClient.get<UserDetails>(`${this.url}/users/details`).pipe(catchError(this.errorHandler), tap((response) => {
+      this.saveLocal('userDetails', response);
+      console.log(response);
+    }))
+  }
+
   saveUser(user: User) {
-    localStorage.setItem('token', user.token);
-    localStorage.setItem('user', JSON.stringify(user));
-    this.httpClient.get<UserDetails>(this.url,)
+    this.saveLocal('token', user.token);
+    this.saveLocal('user', user)
   }
 
   getUser() {
     return JSON.parse(localStorage.getItem('user'));
   }
 
+  getUserDetails(): UserDetails {
+    return this.getLocal('userDetails');
+  }
+
+  getUserRole(): string {
+    return this.getUserDetails().role;
+  }
+
   getToken() {
-    return localStorage.getItem('token');
+    return this.getLocal('token');
+  }
+
+  isLoggedIn(): boolean {
+    return this.getToken() !== null;
   }
 
   signOut() {
@@ -56,6 +75,14 @@ export class AuthService {
     console.log('error', errorRes);
     localStorage.clear();
     return throwError(errorRes.error);
+  }
+
+  private saveLocal(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  private getLocal(key) {
+    return JSON.parse(localStorage.getItem(key));
   }
 
 }
